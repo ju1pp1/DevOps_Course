@@ -17,6 +17,7 @@ function isoUtcNow() {
     return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
 }
 
+//Kernel uptime in seconds from /proc/uptime. In containers it equals host uptime.
 function uptimeHours() {
     try {
         const content = fs.readFileSync('/proc/uptime', 'utf-8').trim().split(' ')[0];
@@ -45,7 +46,7 @@ function postToStorage(line) {
         const url = new URL(`${STORAGE_URL}/log`);
         const req = http.request(
             {
-                hostname: url.hostnamem
+                hostname: url.hostname,
                 port: url.port,
                 path: url.pathname,
                 method: 'POST',
