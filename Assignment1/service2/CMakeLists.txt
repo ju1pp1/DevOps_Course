@@ -1,0 +1,5 @@
+cmake_minimum_required(Version 3.10)
+project(service2 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+add_executable(service2 main.cpp)
+target_compile_definitions(service2 PRIVATE CPPHTTPLIB_OPENSSL_SUPPORT=0)
