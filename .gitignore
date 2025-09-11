@@ -1,2 +1,4 @@
 # DevOps gitignore
 node_modules/
+.vscode
+vstorage/
