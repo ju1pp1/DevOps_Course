@@ -8,6 +8,7 @@ LOG_FILE = os.path.join(LOG_DIR, "storage.log")
 
 os.makedirs(LOG_DIR, exist_ok=True)
 
+# POST /log, append incoming request body as a new line in the storage log
 @app.post("/log")
 def post_log():
     data = request.get_data(as_text=True)
@@ -15,6 +16,7 @@ def post_log():
         f.write(data.rstrip("\n") + "\n")
     return "", 204
 
+# GET /log, return entire log
 @app.get("/log")
 def get_log():
     if not os.path.exists(LOG_FILE):
@@ -23,6 +25,7 @@ def get_log():
         content = f.read()
     return Response(content, mimetype="text/plain")
 
+# Simple health check endpoint to confirm running service
 @app.get("/")
 def root():
     return Response("Storage OK. POST/GET /log", mimetype="text/plain")

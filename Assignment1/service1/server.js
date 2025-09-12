@@ -27,6 +27,7 @@ function uptimeHours() {
     }
 }
 
+//This runs 'df' to get fre disk space in MB for the root filesystem 
 function freeDiskMB() {
     try {
         const out = execSync('df -Pm / | tail -1 | awk \'{print $4}\'').toString().trim();
@@ -40,6 +41,7 @@ function statusLine(prefix) {
     return `${prefix}: uptime ${uptimeHours()} hours, free disk in root: ${freeDiskMB()} MBytes`;
 }
 
+//Send log line to the Storage service
 function postToStorage(line) {
     return new Promise((resolve, reject) => {
         const data = line;
@@ -63,11 +65,13 @@ function postToStorage(line) {
     });
 }
 
+//Appends log line to the shared vStorage file
 function appendToVStorage(line) {
     fs.mkdirSync('/vstorage', { recursive: true });
     fs.appendFileSync(VSTORAGE_FILE, line + '\n', 'utf-8');
 }
 
+// GET /status, forward to service2
 app.get('/status', async (_req, res) => {
     try {
         const line1 = `Timestamp1:${isoUtcNow()} ${statusLine('status')}`;
@@ -90,6 +94,7 @@ app.get('/status', async (_req, res) => {
     }
 });
 
+// GET /log, forward to storage
 app.get('/log', (_req, res) => {
     http.get(`${STORAGE_URL}/log`, (r) => {
         res.status(r.statusCode || 200);
