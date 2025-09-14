@@ -1,0 +1,23 @@
+The used LLM tool:
+The used LLM tool is ChatGPT.
+
+Motivation/reason to use LLM:
+To help writing regex or shell command strings, since i am not so familiar with those. Also .NET GET and POST methods, when choosing to write servic2 on C#. Docker storage volume explanation.
+
+How and why LLM helped:
+Provided information about shell command strings and regex, also explaining what is the reason we use each character.
+Aid using the filesystem on .NET alongside e.g. POST method. Summarizing what i should do and why.
+Explaining how to structure Docker storage volume in Docker-compose.
+
+What kind of mistakes LLM did
+It was trying to give a regex that would not fit with the assignment requirements.
+It did not understand what is the 
+
+What were things that LLM was not able to provide
+Everything that i requested from it seemed to be ok. Some questions had to be modified and asked again.
+
+• You allow course staff to use this report in grading and use of it (after anonymization) for
+teaching development and research purposes.
+
+• The course staff will investigate different ways to discover use of LLM – students using LLM
+without reporting it, will be discontinued from the course.
